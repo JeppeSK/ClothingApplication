@@ -1,0 +1,26 @@
+﻿<Application x:Class="ClothingApplication.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ClothingApplication"
+             xmlns:viewModel="clr-namespace:ClothingApplication.MVVM.ViewModel"
+             xmlns:view="clr-namespace:ClothingApplication.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    
+    <Application.Resources>
+
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Theme/SearchBarTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:InventoryViewModel}">
+                <view:InventoryView/>
+            </DataTemplate>
+            
+        </ResourceDictionary>
+        
+    </Application.Resources>
+    
+</Application>
