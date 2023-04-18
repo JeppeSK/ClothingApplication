@@ -5,9 +5,69 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClothingApplication.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Background="#1b1b1b">
+             d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="CRUD"
+                   Foreground="white"
+                   FontSize="28"
+                   HorizontalAlignment="Left"
+                   FontFamily="/Fonts/#Poppins"
+                   Margin="10,0,0,0"/>
+
+        <ListBox x:Name="InventoryList" 
+                 d:ItemsSource="{d:SampleData ItemCount=5}"
+                 Margin="10,10,0,10" 
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Width="380"
+                 HorizontalAlignment="Left"
+                 Grid.Row="1"
+                 FontFamily="/Fonts/#Poppins"/>
+
+        <StackPanel Grid.Column="2"
+                    Grid.Row="2">
+
+            <Button Grid.Column="2"
+                Grid.Row="2"
+                Height="30"
+                Width="90"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10,10,0,0"
+                x:Name="CreateObject"
+                Content="Create"/>
+
+            <Button Grid.Column="2"
+                Grid.Row="2"
+                Height="30"
+                Width="90"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10,10,0,0"
+                x:Name="RemoveObject"
+                Content="Remove"/>
+
+            <Button Grid.Column="2"
+                Grid.Row="2"
+                Height="30"
+                Width="90"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10,10,0,0"
+                x:Name="EditObject"
+                Content="Edit"/>
+
+        </StackPanel>
     </Grid>
 </UserControl>

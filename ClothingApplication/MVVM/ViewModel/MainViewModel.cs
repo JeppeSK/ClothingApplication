@@ -28,6 +28,7 @@ namespace ClothingApplication.MVVM.ViewModel
         public MainViewModel()
         {
             InventoryVm = new InventoryViewModel();
+            CRUDVm = new CRUDViewModel();
 
             currentView = InventoryVm;
 

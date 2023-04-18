@@ -17,25 +17,26 @@
     </Window.DataContext>
 
     <Border Background="#272537" 
-            CornerRadius="20">
+            CornerRadius="20"
+            MouseDown="Grid_MouseDown">
 
-        <Grid MouseDown="Grid_MouseDown">
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="75" />
+                <RowDefinition Height="75"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Inventory Check"
+            <TextBlock Text="Clothing Corner"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
                    Foreground="White"
                    FontSize="22"
-                   Margin="20,0,0,0"
+                   Margin="10,0,0,0"
                    FontFamily="/Fonts/#Poppins"/>
 
             <StackPanel Grid.Row="1">

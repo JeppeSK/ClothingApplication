@@ -18,7 +18,11 @@
             <DataTemplate DataType="{x:Type viewModel:InventoryViewModel}">
                 <view:InventoryView/>
             </DataTemplate>
-            
+
+            <DataTemplate DataType="{x:Type viewModel:CRUDViewModel}">
+                <view:CRUDView/>
+            </DataTemplate>
+
         </ResourceDictionary>
         
     </Application.Resources>
