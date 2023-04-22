@@ -1,5 +1,5 @@
 ﻿using ClothingApplication.DAL;
-using System;
+using ClothingApplication.Migrations;
 using System.Data.Entity;
 using System.Windows;
 using System.Windows.Input;
@@ -15,6 +15,9 @@ namespace ClothingApplication
         public MainWindow()
         {
             InitializeComponent();
+
+            var initializer = new MigrateDatabaseToLatestVersion<ClothContext, Configuration>();
+            Database.SetInitializer(initializer);
 
         }
 

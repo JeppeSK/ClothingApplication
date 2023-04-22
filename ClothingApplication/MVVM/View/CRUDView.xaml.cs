@@ -3,6 +3,7 @@ using ClothingApplication.MVVM.Model;
 using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
+using ClothingApplication.Migrations;
 
 namespace ClothingApplication.MVVM.View
 {
@@ -16,6 +17,9 @@ namespace ClothingApplication.MVVM.View
         public CRUDView()
         {
             InitializeComponent();
+
+            var initializer = new MigrateDatabaseToLatestVersion<ClothContext, Configuration>();
+            Database.SetInitializer(initializer);
 
             Datagrid.ItemsSource = Context.Cloth.Local;
 

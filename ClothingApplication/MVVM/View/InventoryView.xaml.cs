@@ -1,4 +1,5 @@
 ﻿using ClothingApplication.DAL;
+using ClothingApplication.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -28,7 +29,10 @@ namespace ClothingApplication.MVVM.View
         {
             InitializeComponent();
 
-            InventoryList.ItemsSource = Context.Cloth.Local;
+            var initializer = new MigrateDatabaseToLatestVersion<ClothContext, Configuration>();
+            Database.SetInitializer(initializer);
+
+            Datagrid.ItemsSource = Context.Cloth.Local;
 
             Context.Cloth.Load();
         }

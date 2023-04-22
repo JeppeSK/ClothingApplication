@@ -9,7 +9,7 @@ namespace ClothingApplication.MVVM.Model
 
         public Pants() { }
 
-        public Pants(Brand brand, string color, string fabric, double price, int inventory, string size, int waistSize) : base(brand, color, fabric, price, inventory)
+        public Pants(string brandname, string color, string fabric, double price, int inventory, string size, int waistSize) : base(brandname, color, fabric, price, inventory)
         {
             _pantsSize = size;
             _waistSize = waistSize;

@@ -17,10 +17,15 @@ namespace ClothingApplication.DAL
 
         }
 
-        public DbSet<Cloth> Cloth { get; set; }
-        public DbSet<Jacket> Jacket { get; set; }
-        public DbSet<Pants> Pants { get; set; }
-        public DbSet<T_shirt> T_Shirt { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
+        public virtual DbSet<Cloth> Cloth { get; set; }
+        public virtual DbSet<Jacket> Jacket { get; set; }
+        public virtual DbSet<Pants> Pants { get; set; }
+        public virtual DbSet<T_shirt> T_Shirt { get; set; }
 
 
     }

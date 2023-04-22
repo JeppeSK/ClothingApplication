@@ -8,7 +8,7 @@ namespace ClothingApplication.MVVM.Model
 
         public T_shirt() { }
 
-        public T_shirt(Brand brand, string color, string fabric, double price, int inventory, string size) : base(brand, color, fabric, price, inventory)
+        public T_shirt(string brandname, string color, string fabric, double price, int inventory, string size) : base(brandname, color, fabric, price, inventory)
         {
             _tshirtSize = size;
         }
@@ -17,7 +17,7 @@ namespace ClothingApplication.MVVM.Model
             return 
 
                 "Type: Pants " + 
-                " Brand: " + this._brand._brandName + 
+                " Brand: " + _brand + 
                 " Color: " + _color + 
                 " Fabric: " + _fabric + 
                 " Price: " + _price + 

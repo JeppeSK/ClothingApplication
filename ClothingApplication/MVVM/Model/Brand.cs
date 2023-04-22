@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Windows.Media;
 
 namespace ClothingApplication.MVVM.Model
 {
@@ -19,7 +20,6 @@ namespace ClothingApplication.MVVM.Model
             _brandName = name;
             _country = country;
             _logo = logo;
-
         }
     }
 }

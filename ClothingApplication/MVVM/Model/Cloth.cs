@@ -16,9 +16,9 @@ namespace ClothingApplication.Model
 
         public Cloth() { }  
 
-        public Cloth(Brand brand, string color, string fabric, double price, int inventory)
+        public Cloth(string brandname, string color, string fabric, double price, int inventory)
         {
-            _brand = brand;
+            _brand._brandName = brandname;
             _color = color;
             _fabric = fabric;
             _price = price;

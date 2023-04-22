@@ -98,6 +98,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\202304211853162_InitialCreate.cs" />
+    <Compile Include="Migrations\202304211853162_InitialCreate.designer.cs">
+      <DependentUpon>202304211853162_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MVVM\Model\Brand.cs" />
     <Compile Include="MVVM\Model\Cloth.cs" />
     <Compile Include="MVVM\Model\Jacket.cs" />
@@ -125,6 +130,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202304211853162_InitialCreate.resx">
+      <DependentUpon>202304211853162_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -8,7 +8,7 @@ namespace ClothingApplication.MVVM.Model
         public string _jacketSize { get; set; }
 
         public Jacket() { }
-        public Jacket(Brand brand, string color, string fabric, double price, int inventory, string size, bool hasHood) : base(brand, color, fabric, price, inventory)
+        public Jacket(string brandname, string color, string fabric, double price, int inventory, string size, bool hasHood) : base(brandname, color, fabric, price, inventory)
         {
             _jacketSize = size;
             _hasHood = hasHood;

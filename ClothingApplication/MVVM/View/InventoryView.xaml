@@ -8,6 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     
     <StackPanel>
+        
         <TextBlock Text="Overview"
                    Foreground="White"
                    FontSize="28"
@@ -15,34 +16,22 @@
                    Margin="0,0,0,20"
                    FontFamily="/Fonts/#Poppins"/>
 
-        <StackPanel Orientation="Horizontal">
-            <Border Width="400"
-                    Height="400">
+        <StackPanel Height="388">
 
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="White" Offset="0.0"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" 
+                      Name="Datagrid"
+                      Margin="10,10,0,10" 
+                      Background="White"
+                      BorderThickness="0"
+                      HorizontalAlignment="Left"
+                      Width="600"
+                      Height="368"
+                      Grid.Row="1"
+                      FontFamily="/Fonts/#Poppins"/>
 
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="10"
-                                       RadiusY="10"
-                                       Rect="0,0,400,393"/>
-                </Border.Clip>
 
-                <ListBox x:Name="InventoryList" 
-                         d:ItemsSource="{d:SampleData ItemCount=5}" 
-                         Margin="10,10,0,10" 
-                         Background="Transparent"
-                         BorderThickness="0"
-                         Width="380"
-                         HorizontalAlignment="Left"
-                         FontFamily="/Fonts/#Poppins"/>
-
-            </Border>
- 
         </StackPanel>
         
     </StackPanel>
+    
 </UserControl>
