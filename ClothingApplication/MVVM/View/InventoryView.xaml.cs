@@ -23,14 +23,14 @@ namespace ClothingApplication.MVVM.View
     /// </summary>
     public partial class InventoryView : UserControl
     {
-        //private ClothContext Context = new ClothContext();
+        private ClothContext Context = new ClothContext();
         public InventoryView()
         {
             InitializeComponent();
 
-            //InventoryList.ItemsSource = Context.Cloth.Local;
+            InventoryList.ItemsSource = Context.Cloth.Local;
 
-            //Context.Cloth.Load();
+            Context.Cloth.Load();
         }
     }
 }

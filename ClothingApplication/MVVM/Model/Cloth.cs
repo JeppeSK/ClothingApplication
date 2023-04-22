@@ -1,21 +1,18 @@
-﻿using ClothingApplication.MVVM.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ClothingApplication.Core;
+using ClothingApplication.MVVM.Model;
+using System.ComponentModel.DataAnnotations;
 
 namespace ClothingApplication.Model
 {
     abstract class Cloth
     {
-
-        public int _id { get; set; }
+        [Key] public int _id { get; set; }
         public Brand _brand { get; set; }
         public string _color { get; set; }
         public string _fabric { get; set; }
         public double _price { get; set; }
         public int _inventory { get; set; }
+        public string DiscriminatorValue { get { return this.GetType().Name; } }
 
         public Cloth() { }  
 

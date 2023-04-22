@@ -4,12 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClothingApplication.MVVM.View"
+             xmlns:Model="clr-namespace:ClothingApplication.MVVM.Model"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="350"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
@@ -25,49 +26,121 @@
                    FontFamily="/Fonts/#Poppins"
                    Margin="10,0,0,0"/>
 
-        <ListBox x:Name="InventoryList" 
-                 d:ItemsSource="{d:SampleData ItemCount=5}"
-                 Margin="10,10,0,10" 
-                 Background="Transparent"
-                 BorderThickness="0"
-                 Width="380"
-                 HorizontalAlignment="Left"
-                 Grid.Row="1"
-                 FontFamily="/Fonts/#Poppins"/>
+        <Border Grid.Row="1">
 
-        <StackPanel Grid.Column="2"
-                    Grid.Row="2">
+            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" 
+                      Name="Datagrid"
+                      Margin="10,10,0,10" 
+                      Background="White"
+                      BorderThickness="0"
+                      HorizontalAlignment="Left"
+                      Width="330"
+                      Grid.Row="1"
+                      FontFamily="/Fonts/#Poppins"/>
 
+        </Border>
+
+        <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Bottom"
+                    Grid.Column="2"
+                    Grid.Row="2"
+                    Margin="0,0,0,10">
+            
             <Button Grid.Column="2"
                 Grid.Row="2"
                 Height="30"
                 Width="90"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"
+                VerticalAlignment="Bottom"
                 Margin="10,10,0,0"
                 x:Name="CreateObject"
-                Content="Create"/>
+                Content="Create" Click="CreateObject_Click"/>
 
             <Button Grid.Column="2"
                 Grid.Row="2"
                 Height="30"
                 Width="90"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"
+                VerticalAlignment="Bottom"
                 Margin="10,10,0,0"
                 x:Name="RemoveObject"
-                Content="Remove"/>
+                Content="Create Brand" Click="RemoveObject_Click"/>
 
             <Button Grid.Column="2"
                 Grid.Row="2"
                 Height="30"
                 Width="90"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"
+                VerticalAlignment="Bottom"
                 Margin="10,10,0,0"
                 x:Name="EditObject"
                 Content="Edit"/>
 
         </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="2"
+                    Grid.Row="1">
+
+            <ComboBox Width="90"
+                      HorizontalAlignment="Left"
+                      Margin="10,10,0,0" 
+                      SelectionChanged="ComboBox_SelectionChanged"
+                      Name="cmb"
+                      IsSynchronizedWithCurrentItem="True">
+
+                <ComboBoxItem>Pants</ComboBoxItem>
+                <ComboBoxItem>Jackets</ComboBoxItem>
+                <ComboBoxItem>T-Shirt</ComboBoxItem>
+                <ComboBoxItem>Shoes</ComboBoxItem>
+
+            </ComboBox>
+
+            <ComboBox Width="90"
+                      HorizontalAlignment="Left"
+                      Margin="10,10,0,0"
+                      Visibility="Hidden"
+                      Name="pantsCB">
+
+            </ComboBox>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0,220,0,0"
+                    Name="pantsLblPanel"
+                    Visibility="Hidden">
+
+            <Label Foreground="White">Waist Size:</Label>
+            <Label Foreground="White">Size:</Label>
+            <Label Foreground="White">Price:</Label>
+            <Label Foreground="White">Color:</Label>
+            <Label Foreground="White">Fabric:</Label>
+            <Label Foreground="White">Inventory:</Label>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="200,220,0,0"
+                    Name="pantsTxtboxPanel"
+                    Visibility="Hidden">
+
+            <TextBox Name="waistsize" Width="90" Margin="0,5,0,5"></TextBox>
+            <TextBox Name="size" Width="90" Margin="0,5,0,5"></TextBox>
+            <TextBox Name="price" Width="90" Margin="0,5,0,5"></TextBox>
+            <TextBox Name="color" Width="90" Margin="0,5,0,5"></TextBox>
+            <TextBox Name="fabric" Width="90" Margin="0,5,0,5"></TextBox>
+            <TextBox Name="inventory" Width="90" Margin="0,5,0,5"></TextBox>
+
+        </StackPanel>
+
     </Grid>
 </UserControl>

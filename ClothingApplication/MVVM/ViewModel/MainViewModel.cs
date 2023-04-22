@@ -9,7 +9,6 @@ namespace ClothingApplication.MVVM.ViewModel
 
         public RelayCommand InventoryViewCommand { get; set; }
         public RelayCommand CRUDViewCommand { get; set; }
-
         public InventoryViewModel InventoryVm { get; set; }
         public CRUDViewModel CRUDVm { get; set; }
 

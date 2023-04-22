@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ClothingApplication.MVVM.Model
 {
     internal class Brand
     {
-        public string _brandName;
-        public string _country;
-        public string _logo;
+        [Key] public int brandId { get; set; }
+
+        public string _brandName { get; set; }
+
+        public string _country { get; set; }
+
+        public string _logo { get; set; }
+
+        public Brand() { }
 
         public Brand(string name, string country, string logo)
         {
