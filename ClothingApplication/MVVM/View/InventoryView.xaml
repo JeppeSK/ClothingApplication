@@ -24,10 +24,11 @@
                       Background="White"
                       BorderThickness="0"
                       HorizontalAlignment="Left"
-                      Width="600"
+                      Width="408"
                       Height="368"
                       Grid.Row="1"
-                      FontFamily="/Fonts/#Poppins"/>
+                      FontFamily="/Fonts/#Poppins"
+                      IsReadOnly="True"/>
 
 
         </StackPanel>

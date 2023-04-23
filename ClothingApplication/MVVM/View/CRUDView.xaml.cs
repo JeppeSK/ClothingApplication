@@ -21,6 +21,8 @@ namespace ClothingApplication.MVVM.View
             var initializer = new MigrateDatabaseToLatestVersion<ClothContext, Configuration>();
             Database.SetInitializer(initializer);
 
+            pantsCB.ItemsSource = Context.brand.Local;
+
             Datagrid.ItemsSource = Context.Cloth.Local;
 
             Context.Cloth.Load();

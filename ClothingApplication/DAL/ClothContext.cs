@@ -1,11 +1,6 @@
-﻿using ClothingApplication.Model;
-using ClothingApplication.MVVM.Model;
-using System;
-using System.Collections.Generic;
+﻿using ClothingApplication.MVVM.Model;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ClothingApplication.DAL
 {
@@ -23,6 +18,7 @@ namespace ClothingApplication.DAL
         }
 
         public virtual DbSet<Cloth> Cloth { get; set; }
+        public virtual DbSet<Brand> brand { get; set; }
         public virtual DbSet<Jacket> Jacket { get; set; }
         public virtual DbSet<Pants> Pants { get; set; }
         public virtual DbSet<T_shirt> T_Shirt { get; set; }

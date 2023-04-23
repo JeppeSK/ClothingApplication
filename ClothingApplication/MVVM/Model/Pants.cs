@@ -1,4 +1,4 @@
-﻿using ClothingApplication.Model;
+﻿using ClothingApplication.MVVM.Model;
 
 namespace ClothingApplication.MVVM.Model
 {

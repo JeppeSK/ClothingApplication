@@ -1,8 +1,7 @@
-﻿using ClothingApplication.Core;
-using ClothingApplication.MVVM.Model;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ClothingApplication.Model
+namespace ClothingApplication.MVVM.Model
 {
     abstract class Cloth
     {
@@ -12,7 +11,12 @@ namespace ClothingApplication.Model
         public string _fabric { get; set; }
         public double _price { get; set; }
         public int _inventory { get; set; }
-        public string DiscriminatorValue { get { return this.GetType().Name; } }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public string DiscriminatorValue
+        {
+            get { return this.GetType().Name; }
+        }
 
         public Cloth() { }  
 
