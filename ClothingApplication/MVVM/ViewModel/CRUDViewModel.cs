@@ -1,25 +1,20 @@
 ﻿using ClothingApplication.Core;
+using ClothingApplication.DAL;
 using ClothingApplication.MVVM.Model;
+using System.Collections.Generic;
+using System;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
+
 namespace ClothingApplication.MVVM.ViewModel
 {
-    internal class CRUDViewModel : ObservableObject
+    internal class CRUDViewModel
     {
 
-        public Cloth cloth { get; set; }
-        public Brand brand { get; set; }
-
-        public string brandName
+        public CRUDViewModel() 
         {
-            get { return brand._brandName; }
-            set
-            {
-                brand._brandName = value;
-                OnPropertyChanged();
-            }
+            
         }
-
-        public CRUDViewModel() { }
 
     }
 }

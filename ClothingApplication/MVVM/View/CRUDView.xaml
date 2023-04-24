@@ -94,29 +94,14 @@
                       Margin="10,10,0,0" 
                       Name="cmb"
                       IsSynchronizedWithCurrentItem="True"
-                      SelectionChanged="ComboBox_SelectionChanged"
-                      ItemsSource="{Binding cloth}">
-
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding DiscriminatorValue}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
+                      SelectionChanged="ComboBox_SelectionChanged">
 
             </ComboBox>
 
             <ComboBox Width="90"
                       HorizontalAlignment="Left"
                       Margin="10,10,0,0"
-                      Name="pantsCB"
-                      ItemsSource="{Binding brand}">
-
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding brandName}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-
+                      Name="pantsCB">
 
             </ComboBox>
 
@@ -127,9 +112,10 @@
                     Grid.Row="1"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Margin="0,220,0,0"
+                    Margin="0,200,0,0"
                     Name="pantsLblPanel">
 
+            <Label Foreground="White">Has Hood:</Label>
             <Label Foreground="White">Waist Size:</Label>
             <Label Foreground="White">Size:</Label>
             <Label Foreground="White">Price:</Label>
@@ -144,9 +130,10 @@
                     Grid.Row="1"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Margin="200,220,0,0"
+                    Margin="200,200,0,0"
                     Name="pantsTxtboxPanel">
-
+            
+            <RadioButton Name="hasHood" Width="90" Margin="0,5,0,5"></RadioButton>
             <TextBox Name="waistsize" Width="90" Margin="0,5,0,5"></TextBox>
             <TextBox Name="size" Width="90" Margin="0,5,0,5"></TextBox>
             <TextBox Name="price" Width="90" Margin="0,5,0,5"></TextBox>

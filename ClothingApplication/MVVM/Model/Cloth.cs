@@ -11,8 +11,6 @@ namespace ClothingApplication.MVVM.Model
         public string _fabric { get; set; }
         public double _price { get; set; }
         public int _inventory { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string DiscriminatorValue
         {
             get { return this.GetType().Name; }
@@ -20,9 +18,9 @@ namespace ClothingApplication.MVVM.Model
 
         public Cloth() { }  
 
-        public Cloth(string brandname, string color, string fabric, double price, int inventory)
+        public Cloth(Brand brand, string color, string fabric, double price, int inventory)
         {
-            _brand._brandName = brandname;
+            _brand = brand;
             _color = color;
             _fabric = fabric;
             _price = price;
