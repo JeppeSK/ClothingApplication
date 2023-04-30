@@ -1,5 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace ClothingApplication.MVVM.Model
 {
@@ -10,7 +13,8 @@ namespace ClothingApplication.MVVM.Model
         public string _color { get; set; }
         public string _fabric { get; set; }
         public double _price { get; set; }
-        public int _inventory { get; set; }
+        public int _inventory { get; set; }   
+        public string _image { get; set; }
         public string DiscriminatorValue
         {
             get { return this.GetType().Name; }

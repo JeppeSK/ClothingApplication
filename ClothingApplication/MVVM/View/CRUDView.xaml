@@ -8,7 +8,7 @@
              xmlns:viewModel="clr-namespace:ClothingApplication.MVVM.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+  
     <UserControl.DataContext>
         <viewModel:CRUDViewModel/>
     </UserControl.DataContext>
@@ -71,7 +71,8 @@
                     VerticalAlignment="Bottom"
                     Margin="10,10,0,0"
                     x:Name="RemoveObject"
-                    Content="Create Brand" Click="RemoveObject_Click"/>
+                    Content="Remove" 
+                    Click="RemoveObject_Click"/>
 
             <Button Grid.Column="2"
                     Grid.Row="2"
@@ -81,7 +82,8 @@
                     VerticalAlignment="Bottom"
                     Margin="10,10,0,0"
                     x:Name="EditObject"
-                    Content="Edit"/>
+                    Content="Edit"
+                    Click="EditObject_Click"/>
 
         </StackPanel>
 
@@ -92,7 +94,7 @@
             <ComboBox Width="90"
                       HorizontalAlignment="Left"
                       Margin="10,10,0,0" 
-                      Name="cmb"
+                      x:Name="cmb"
                       IsSynchronizedWithCurrentItem="True"
                       SelectionChanged="ComboBox_SelectionChanged">
 
@@ -101,7 +103,8 @@
             <ComboBox Width="90"
                       HorizontalAlignment="Left"
                       Margin="10,10,0,0"
-                      Name="pantsCB">
+                      Name="brandsCB"
+                      Visibility="Hidden">
 
             </ComboBox>
 
@@ -111,12 +114,12 @@
                     Grid.Column="2"
                     Grid.Row="1"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Margin="0,200,0,0"
-                    Name="pantsLblPanel">
+                    VerticalAlignment="Bottom"
+                    Margin="0,180,0,0"
+                    Name="StandardLblPanel">
 
-            <Label Foreground="White">Has Hood:</Label>
-            <Label Foreground="White">Waist Size:</Label>
+            <Label Foreground="White" Name="Hashoodlbl" Visibility="Hidden">Hashood</Label>
+            <Label Foreground="White" Visibility="Hidden" Name="waistsizelbl">WaistSize</Label>
             <Label Foreground="White">Size:</Label>
             <Label Foreground="White">Price:</Label>
             <Label Foreground="White">Color:</Label>
@@ -129,17 +132,17 @@
                     Grid.Column="2"
                     Grid.Row="1"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Margin="200,200,0,0"
+                    VerticalAlignment="Bottom"
+                    Margin="200,175,0,0"
                     Name="pantsTxtboxPanel">
-            
-            <RadioButton Name="hasHood" Width="90" Margin="0,5,0,5"></RadioButton>
-            <TextBox Name="waistsize" Width="90" Margin="0,5,0,5"></TextBox>
+
+            <RadioButton Name="hasHoodRadio" Width="90" Margin="0,5,0,5" Visibility="Hidden"></RadioButton>
+            <TextBox Name="waistsizetxt" Width="90" Margin="0,5,0,5" Visibility="Hidden"></TextBox>
             <TextBox Name="size" Width="90" Margin="0,5,0,5"></TextBox>
-            <TextBox Name="price" Width="90" Margin="0,5,0,5"></TextBox>
+            <TextBox Name="price" Width="90" Margin="0,5,0,5" TextChanged="textPrevention_forTextBoxes"></TextBox>
             <TextBox Name="color" Width="90" Margin="0,5,0,5"></TextBox>
             <TextBox Name="fabric" Width="90" Margin="0,5,0,5"></TextBox>
-            <TextBox Name="inventory" Width="90" Margin="0,5,0,5"></TextBox>
+            <TextBox Name="inventory" Width="90" Margin="0,5,0,5" TextChanged="textPrevention_forTextBoxes"></TextBox>
 
         </StackPanel>
 

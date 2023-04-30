@@ -21,5 +21,10 @@ namespace ClothingApplication.MVVM.Model
             _country = country;
             _logo = logo;
         }
+
+        public override string ToString()
+        {
+            return _brandName;
+        }
     }
 }

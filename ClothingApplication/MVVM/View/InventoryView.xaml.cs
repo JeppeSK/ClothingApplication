@@ -35,6 +35,7 @@ namespace ClothingApplication.MVVM.View
             Datagrid.ItemsSource = Context.Cloth.Local;
 
             Context.Cloth.Load();
+            Context.brand.Load();
         }
     }
 }
