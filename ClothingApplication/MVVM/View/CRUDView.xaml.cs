@@ -29,8 +29,8 @@ namespace ClothingApplication.MVVM.View
             brandsCB.ItemsSource = Context.brand.Local;
             brandsCB.DisplayMemberPath = "_brandName";
 
-            cmb.ItemsSource = Context.Cloth.Local;
-            cmb.DisplayMemberPath = "DiscriminatorValue";
+            // cmb.ItemsSource = Context.Cloth.Local;
+            // cmb.DisplayMemberPath = "DiscriminatorValue";
         
             Datagrid.ItemsSource = Context.Cloth.Local;
 
@@ -41,10 +41,10 @@ namespace ClothingApplication.MVVM.View
         private void CreateObject_Click(object sender, RoutedEventArgs e)
         {
 
-            Cloth ComboboxItemValue = cmb.SelectedItem as Cloth;
+
             Brand ComboboxBrandValue = brandsCB.SelectedItem as Brand;
 
-            if (ComboboxItemValue.DiscriminatorValue.Equals("Pants"))
+            if (cmb.SelectedItem.Equals("Pants"))
             {
                 Pants pants = new Pants();
 
@@ -56,8 +56,8 @@ namespace ClothingApplication.MVVM.View
                 pants._pantsSize = size.Text;
 
                 Brand thisBrand = (from b in Context.brand
-                               where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
-                               select b).FirstOrDefault();
+                                   where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
+                                   select b).FirstOrDefault();
 
                 pants._brand = thisBrand;
 
@@ -72,12 +72,12 @@ namespace ClothingApplication.MVVM.View
                 }
 
             }
-            else if (ComboboxItemValue.DiscriminatorValue.Equals("Jacket"))
+            else if (cmb.SelectedItem.Equals("Jacket"))
             {
                 Jacket jacket = new Jacket();
 
                 jacket._price = Convert.ToInt32(price.Text);
-                jacket._inventory = Convert.ToInt32(inventory.Text);   
+                jacket._inventory = Convert.ToInt32(inventory.Text);
                 jacket._fabric = fabric.Text;
                 jacket._color = color.Text;
                 jacket._jacketSize = size.Text;
@@ -85,13 +85,13 @@ namespace ClothingApplication.MVVM.View
                 if ((bool)hasHoodRadio.IsChecked)
                 {
                     jacket._hasHood = true;
-                } else if ((bool)!hasHoodRadio.IsChecked){
+                } else if ((bool)!hasHoodRadio.IsChecked) {
                     jacket._hasHood = false;
                 }
 
                 Brand thisBrand = (from b in Context.brand
-                                  where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
-                                  select b).FirstOrDefault();
+                                   where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
+                                   select b).FirstOrDefault();
 
                 jacket._brand = thisBrand;
 
@@ -106,8 +106,18 @@ namespace ClothingApplication.MVVM.View
                 }
 
             }
-            else if (ComboboxItemValue.DiscriminatorValue.Equals("T_shirt"))
+            else if (cmb.SelectedItem.Equals("Tshirt"))
             {
+                //Unfinished error messages to prevent empty fields or the program from premature crashes.
+                /*
+                 
+                if (brandsCB.SelectedItem == null || price.Text == null || inventory.Text == null || fabric.Text == null || color.Text == null || size.Text == null)
+                {
+                    MessageBox.Show("One or more fields are missing information, please enter the required information before proceeding.");
+                }
+
+                */
+
                 T_shirt tshirt = new T_shirt();
 
                 tshirt._price = Convert.ToInt32(price.Text);
@@ -136,30 +146,31 @@ namespace ClothingApplication.MVVM.View
 
         private void RemoveObject_Click(object sender, RoutedEventArgs e)
         {
-            int cloth_id = (Datagrid.SelectedItem as Cloth)._id;
-
-            Cloth cloth = (from c in Context.Cloth
-                           where c._id == cloth_id
-                           select c).FirstOrDefault();
-
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to create " + cloth.ToString(),
-           "Remove Confirmation",
-           System.Windows.MessageBoxButton.YesNo);
-
-            if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+            if(Datagrid.SelectedItem != null)
             {
-                Context.Cloth.Remove(cloth);
-                Context.SaveChanges();
-                Datagrid.ItemsSource = Context.Cloth.Local;
-            }
+                int cloth_id = (Datagrid.SelectedItem as Cloth)._id;
+
+                Cloth cloth = (from c in Context.Cloth
+                               where c._id == cloth_id
+                               select c).FirstOrDefault();
+
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to create " + cloth.ToString(),
+               "Remove Confirmation",
+               System.Windows.MessageBoxButton.YesNo);
+
+                if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+                {
+                    Context.Cloth.Remove(cloth);
+                    Context.SaveChanges();
+                    Datagrid.ItemsSource = Context.Cloth.Local;
+                }
+            } 
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            Cloth ComboboxItemValue = cmb.SelectedItem as Cloth;
-
-            if (ComboboxItemValue.DiscriminatorValue.Equals("Pants"))
+            if (cmb.SelectedItem.Equals("Pants"))
             {
                 //Hide Panels unnecessary panels.
                 hasHoodRadio.Visibility = Visibility.Hidden;
@@ -174,8 +185,9 @@ namespace ClothingApplication.MVVM.View
                 waistsizelbl.Visibility = Visibility.Visible;
                 waistsizetxt.Visibility = Visibility.Visible;
 
+
             }
-            else if (ComboboxItemValue.DiscriminatorValue.Equals("Jacket"))
+            else if (cmb.SelectedItem.Equals("Jacket"))
             {
                 //Hide Panels unnecessary panels.
                 waistsizelbl.Visibility = Visibility.Hidden;
@@ -191,7 +203,7 @@ namespace ClothingApplication.MVVM.View
                 Hashoodlbl.Visibility = Visibility.Visible;
 
             }
-            else if (ComboboxItemValue.DiscriminatorValue.Equals("T_shirt"))
+            else if (cmb.SelectedItem.Equals("Tshirt"))
             {
                 //Hide Panels unnecessary panels.
                 waistsizelbl.Visibility = Visibility.Hidden;

@@ -16,7 +16,7 @@ namespace ClothingApplication.MVVM.Model
         {
             return 
 
-                "Type: Pants " + 
+                "Type: Tshirt " + 
                 " Brand: " + _brand + 
                 " Color: " + _color + 
                 " Fabric: " + _fabric + 

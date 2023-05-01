@@ -95,7 +95,7 @@
                       HorizontalAlignment="Left"
                       Margin="10,10,0,0" 
                       x:Name="cmb"
-                      IsSynchronizedWithCurrentItem="True"
+                      ItemsSource="{Binding AvailableTypes, Mode=OneWay}"
                       SelectionChanged="ComboBox_SelectionChanged">
 
             </ComboBox>
