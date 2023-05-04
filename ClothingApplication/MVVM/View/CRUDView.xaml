@@ -43,7 +43,8 @@
                       Width="330"
                       Grid.Row="1"
                       FontFamily="/Fonts/#Poppins"
-                      IsReadOnly="True"/>
+                      IsReadOnly="True" 
+                      SelectionChanged="MyDataGrid_SelectionChanged"/>
 
         </Border>
 
@@ -136,7 +137,7 @@
                     Margin="200,175,0,0"
                     Name="pantsTxtboxPanel">
 
-            <RadioButton Name="hasHoodRadio" Width="90" Margin="0,5,0,5" Visibility="Hidden"></RadioButton>
+            <CheckBox Name="hasHoodCheckBox" Width="90" Margin="0,5,0,5" Visibility="Hidden"></CheckBox>
             <TextBox Name="waistsizetxt" Width="90" Margin="0,5,0,5" Visibility="Hidden"></TextBox>
             <TextBox Name="size" Width="90" Margin="0,5,0,5"></TextBox>
             <TextBox Name="price" Width="90" Margin="0,5,0,5" TextChanged="textPrevention_forTextBoxes"></TextBox>

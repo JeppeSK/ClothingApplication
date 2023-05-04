@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
+using System.Windows.Media;
+using System.Diagnostics;
 
 namespace ClothingApplication.MVVM.View
 {
@@ -38,109 +40,177 @@ namespace ClothingApplication.MVVM.View
             Context.brand.Load();
         }
 
-        private void CreateObject_Click(object sender, RoutedEventArgs e)
+        private void MyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            int cloth_id = (Datagrid.SelectedItem as Cloth)._id;
 
-            Brand ComboboxBrandValue = brandsCB.SelectedItem as Brand;
+            Cloth selectedItem = (from c in Context.Cloth
+                                  where c._id == cloth_id
+                                  select c).FirstOrDefault(); 
 
-            if (cmb.SelectedItem.Equals("Pants"))
+            if (selectedItem.DiscriminatorValue.Equals("Pants"))
             {
-                Pants pants = new Pants();
+                Pants seletedPants = (from p in Context.Pants
+                                     where p._id == cloth_id
+                                     select p).FirstOrDefault();
 
-                pants._price = Convert.ToInt32(price.Text);
-                pants._waistSize = Convert.ToInt32(waistsizetxt.Text);
-                pants._inventory = Convert.ToInt32(inventory.Text);
-                pants._fabric = fabric.Text;
-                pants._color = color.Text;
-                pants._pantsSize = size.Text;
+                cmb.SelectedIndex = 0;
 
-                Brand thisBrand = (from b in Context.brand
-                                   where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
-                                   select b).FirstOrDefault();
+                brandsCB.SelectedItem = seletedPants._brand;
 
-                pants._brand = thisBrand;
+                price.Text = seletedPants._price.ToString();
+                waistsizetxt.Text = seletedPants._waistSize.ToString();
+                inventory.Text = seletedPants._inventory.ToString();
+                fabric.Text = seletedPants._fabric;
+                color.Text = seletedPants._color;
+                size.Text = seletedPants._pantsSize;
+            }
+            else if (selectedItem.DiscriminatorValue.Equals("Jacket"))
+            {
+                Jacket selectedJacket = (from j in Context.Jacket
+                                       where j._id == cloth_id
+                                       select j).FirstOrDefault();
 
-                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to create " + pants.ToString(),
-                    "Create Confirmation",
-                    System.Windows.MessageBoxButton.YesNo);
+                cmb.SelectedIndex = 1;
 
-                if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+                brandsCB.SelectedItem = selectedJacket._brand;
+
+                price.Text = selectedJacket._price.ToString();
+                inventory.Text = selectedJacket._inventory.ToString();
+                fabric.Text = selectedJacket._fabric;
+                color.Text = selectedJacket._color;
+                size.Text = selectedJacket._jacketSize;
+                if (selectedJacket._hasHood == true)
                 {
-                    Context.Pants.Add(pants);
-                    Context.SaveChanges();
+                    hasHoodCheckBox.IsChecked = true;
+
+                } 
+                else if (selectedJacket._hasHood == true)
+                {
+                    hasHoodCheckBox.IsChecked = false;
                 }
+            }
+            else if (selectedItem.DiscriminatorValue.Equals("Tshirt"))
+            {
+                T_shirt selectedTshirt = (from t in Context.T_Shirt
+                                        where t._id == cloth_id
+                                        select t).FirstOrDefault();
+
+                cmb.SelectedIndex = 3;
+
+                brandsCB.SelectedItem = selectedTshirt._brand;
+
+                price.Text = selectedTshirt._price.ToString();
+                inventory.Text = selectedTshirt._inventory.ToString(); 
+                fabric.Text = selectedTshirt._fabric;
+                color.Text = selectedTshirt._color;
+                size.Text = selectedTshirt._tshirtSize;
 
             }
-            else if (cmb.SelectedItem.Equals("Jacket"))
+        }
+
+        private void CreateObject_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                Jacket jacket = new Jacket();
+                Brand ComboboxBrandValue = brandsCB.SelectedItem as Brand;
 
-                jacket._price = Convert.ToInt32(price.Text);
-                jacket._inventory = Convert.ToInt32(inventory.Text);
-                jacket._fabric = fabric.Text;
-                jacket._color = color.Text;
-                jacket._jacketSize = size.Text;
-
-                if ((bool)hasHoodRadio.IsChecked)
+                if (cmb.SelectedItem.Equals("Pants"))
                 {
-                    jacket._hasHood = true;
-                } else if ((bool)!hasHoodRadio.IsChecked) {
-                    jacket._hasHood = false;
+                    Pants pants = new Pants();
+
+                    pants._price = Convert.ToInt32(price.Text);
+                    pants._waistSize = Convert.ToInt32(waistsizetxt.Text);
+                    pants._inventory = Convert.ToInt32(inventory.Text);
+                    pants._fabric = fabric.Text;
+                    pants._color = color.Text;
+                    pants._pantsSize = size.Text;
+
+                    Brand thisBrand = (from b in Context.brand
+                                       where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
+                                       select b).FirstOrDefault();
+
+                    pants._brand = thisBrand;
+
+                    MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to create " + pants.ToString(),
+                        "Create Confirmation",
+                        System.Windows.MessageBoxButton.YesNo);
+
+                    if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+                    {
+                        Context.Pants.Add(pants);
+                        Context.SaveChanges();
+                    }
+
                 }
-
-                Brand thisBrand = (from b in Context.brand
-                                   where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
-                                   select b).FirstOrDefault();
-
-                jacket._brand = thisBrand;
-
-                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to create " + jacket.ToString(),
-                    "Create Confirmation",
-                    System.Windows.MessageBoxButton.YesNo);
-
-                if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+                else if (cmb.SelectedItem.Equals("Jacket"))
                 {
-                    Context.Jacket.Add(jacket);
-                    Context.SaveChanges();
-                }
+                    Jacket jacket = new Jacket();
 
+                    jacket._price = Convert.ToInt32(price.Text);
+                    jacket._inventory = Convert.ToInt32(inventory.Text);
+                    jacket._fabric = fabric.Text;
+                    jacket._color = color.Text;
+                    jacket._jacketSize = size.Text;
+
+                    if ((bool)hasHoodCheckBox.IsChecked)
+                    {
+                        jacket._hasHood = true;
+                    }
+                    else if ((bool)!hasHoodCheckBox.IsChecked)
+                    {
+                        jacket._hasHood = false;
+                    }
+
+                    Brand thisBrand = (from b in Context.brand
+                                       where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
+                                       select b).FirstOrDefault();
+
+                    jacket._brand = thisBrand;
+
+                    MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to create " + jacket.ToString(),
+                        "Create Confirmation",
+                        System.Windows.MessageBoxButton.YesNo);
+
+                    if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+                    {
+                        Context.Jacket.Add(jacket);
+                        Context.SaveChanges();
+                    }
+
+                }
+                else if (cmb.SelectedItem.Equals("Tshirt"))
+                {
+
+                    T_shirt tshirt = new T_shirt();
+
+                    tshirt._price = Convert.ToInt32(price.Text);
+                    tshirt._inventory = Convert.ToInt32(inventory.Text);
+                    tshirt._fabric = fabric.Text;
+                    tshirt._color = color.Text;
+                    tshirt._tshirtSize = size.Text;
+
+                    Brand thisBrand = (from b in Context.brand
+                                       where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
+                                       select b).FirstOrDefault();
+
+                    tshirt._brand = thisBrand;
+
+                    MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to create " + tshirt.ToString(),
+                        "Create Confirmation",
+                        System.Windows.MessageBoxButton.YesNo);
+
+                    if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+                    {
+                        Context.T_Shirt.Add(tshirt);
+                        Context.SaveChanges();
+                    }
+                }
             }
-            else if (cmb.SelectedItem.Equals("Tshirt"))
+            catch(Exception ex)
             {
-                //Unfinished error messages to prevent empty fields or the program from premature crashes.
-                /*
-                 
-                if (brandsCB.SelectedItem == null || price.Text == null || inventory.Text == null || fabric.Text == null || color.Text == null || size.Text == null)
-                {
-                    MessageBox.Show("One or more fields are missing information, please enter the required information before proceeding.");
-                }
-
-                */
-
-                T_shirt tshirt = new T_shirt();
-
-                tshirt._price = Convert.ToInt32(price.Text);
-                tshirt._inventory = Convert.ToInt32(inventory.Text);
-                tshirt._fabric = fabric.Text;
-                tshirt._color = color.Text;
-                tshirt._tshirtSize = size.Text;
-
-                Brand thisBrand = (from b in Context.brand
-                                   where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
-                                   select b).FirstOrDefault();
-
-                tshirt._brand = thisBrand;
-
-                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to create " + tshirt.ToString(),
-                    "Create Confirmation",
-                    System.Windows.MessageBoxButton.YesNo);
-
-                if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
-                {
-                    Context.T_Shirt.Add(tshirt);
-                    Context.SaveChanges();
-                }
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -173,7 +243,7 @@ namespace ClothingApplication.MVVM.View
             if (cmb.SelectedItem.Equals("Pants"))
             {
                 //Hide Panels unnecessary panels.
-                hasHoodRadio.Visibility = Visibility.Hidden;
+                hasHoodCheckBox.Visibility = Visibility.Hidden;
                 Hashoodlbl.Visibility = Visibility.Hidden;
 
                 //Always Visible when any item is selected.
@@ -199,7 +269,7 @@ namespace ClothingApplication.MVVM.View
                 brandsCB.Visibility = Visibility.Visible;
 
                 //Only visible with the jacket selected.
-                hasHoodRadio.Visibility = Visibility.Visible;
+                hasHoodCheckBox.Visibility = Visibility.Visible;
                 Hashoodlbl.Visibility = Visibility.Visible;
 
             }
@@ -208,7 +278,7 @@ namespace ClothingApplication.MVVM.View
                 //Hide Panels unnecessary panels.
                 waistsizelbl.Visibility = Visibility.Hidden;
                 waistsizetxt.Visibility = Visibility.Hidden;
-                hasHoodRadio.Visibility = Visibility.Hidden;
+                hasHoodCheckBox.Visibility = Visibility.Hidden;
                 Hashoodlbl.Visibility = Visibility.Hidden;
 
                 //Always Visible when any item is selected.
@@ -229,25 +299,104 @@ namespace ClothingApplication.MVVM.View
 
         private void EditObject_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult messageBoxResult = new MessageBoxResult();
+
             int cloth_id = (Datagrid.SelectedItem as Cloth)._id;
+            Brand ComboboxBrandValue = brandsCB.SelectedItem as Brand;
 
             Cloth updateCloth = (from c in Context.Cloth
                                  where c._id == cloth_id
                                  select c).FirstOrDefault();
 
-            updateCloth._price = Convert.ToInt32(price.Text);
-            updateCloth._inventory = Convert.ToInt32(inventory.Text);
-            updateCloth._fabric = fabric.Text;
-            updateCloth._color = color.Text;
-
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to Update " + updateCloth.ToString(),
-            "Remove Confirmation",
-            System.Windows.MessageBoxButton.YesNo);
-
-            if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+            if (updateCloth.DiscriminatorValue.Equals("Pants"))
             {
-                Context.SaveChanges();
-                Datagrid.ItemsSource = Context.Cloth.Local;
+                Pants updatePants = (from p in Context.Pants
+                                     where p._id == cloth_id
+                                     select p).FirstOrDefault();
+
+                updatePants._price = Convert.ToInt32(price.Text);
+                updatePants._waistSize = Convert.ToInt32(waistsizetxt.Text);
+                updatePants._inventory = Convert.ToInt32(inventory.Text);
+                updatePants._fabric = fabric.Text;
+                updatePants._color = color.Text;
+                updatePants._pantsSize = size.Text;
+
+                Brand thisBrand = (from b in Context.brand
+                                   where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
+                                   select b).FirstOrDefault();
+
+                messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to Update " + updatePants.ToString(),
+                    "Edit Confirmation", System.Windows.MessageBoxButton.YesNo);
+
+                if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+                {
+                    Context.SaveChanges();
+                    Datagrid.ItemsSource = Context.Cloth.Local;
+                    Context.Cloth.Load();
+                }
+
+
+            } else if (updateCloth.DiscriminatorValue.Equals("Jacket"))
+            {
+                Jacket updateJacket = (from j in Context.Jacket
+                                       where j._id == cloth_id
+                                       select j).FirstOrDefault();
+
+                updateJacket._price = Convert.ToInt32(price.Text);
+                updateJacket._inventory = Convert.ToInt32(inventory.Text);
+                updateJacket._fabric = fabric.Text;
+                updateJacket._color = color.Text;
+                updateJacket._jacketSize = size.Text;
+
+                if (hasHoodCheckBox.IsChecked == false)
+                {
+                    updateJacket._hasHood = false;
+                } 
+                else if (hasHoodCheckBox.IsChecked == true)
+                {
+                    updateJacket._hasHood = true;
+                }
+
+                    Brand thisBrand = (from b in Context.brand
+                                   where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
+                                   select b).FirstOrDefault();
+
+                messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to Update " + updateJacket.ToString(),
+                    "Edit Confirmation", System.Windows.MessageBoxButton.YesNo);
+
+                if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+                {
+                    Context.SaveChanges();
+                    Datagrid.ItemsSource = Context.Cloth.Local;
+                    Context.Cloth.Load();
+                }
+
+            } else if (updateCloth.DiscriminatorValue.Equals("Tshirt"))
+            {
+                T_shirt updateTshirt = (from t in Context.T_Shirt
+                                        where t._id == cloth_id
+                                        select t).FirstOrDefault();
+
+                updateTshirt._price = Convert.ToInt32(price.Text);
+                updateTshirt._inventory = Convert.ToInt32(inventory.Text);
+                updateTshirt._fabric = fabric.Text;
+                updateTshirt._color = color.Text;
+                updateTshirt._tshirtSize = size.Text;
+
+                Brand thisBrand = (from b in Context.brand
+                                   where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
+                                   select b).FirstOrDefault();
+
+                messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to Update " + updateTshirt.ToString(),
+                    "Edit Confirmation", System.Windows.MessageBoxButton.YesNo);
+
+                if (messageBoxResult == System.Windows.MessageBoxResult.Yes)
+                {
+                    Context.SaveChanges();
+                    Datagrid.ItemsSource = Context.Cloth.Local;
+                    Context.Cloth.Load();
+                }
+
             }
         }
     }
