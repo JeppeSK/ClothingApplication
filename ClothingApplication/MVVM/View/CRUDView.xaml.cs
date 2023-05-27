@@ -3,7 +3,7 @@ using ClothingApplication.MVVM.Model;
 using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
-using ClothingApplication.Migrations;
+// using ClothingApplication.Migrations;
 using System.Linq;
 using System.Collections.Generic;
 using System;
@@ -25,8 +25,8 @@ namespace ClothingApplication.MVVM.View
         {
             InitializeComponent();
 
-            var initializer = new MigrateDatabaseToLatestVersion<ClothContext, Configuration>();
-            Database.SetInitializer(initializer);
+//            var initializer = new MigrateDatabaseToLatestVersion<ClothContext, Configuration>();
+//            Database.SetInitializer(initializer);
                 
             brandsCB.ItemsSource = Context.brand.Local;
             brandsCB.DisplayMemberPath = "_brandName";
@@ -43,71 +43,71 @@ namespace ClothingApplication.MVVM.View
         private void MyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            int cloth_id = (Datagrid.SelectedItem as Cloth)._id;
+        //    int cloth_id = (Datagrid.SelectedItem as Cloth)._id;
 
-            Cloth selectedItem = (from c in Context.Cloth
-                                  where c._id == cloth_id
-                                  select c).FirstOrDefault(); 
+        //    Cloth selectedItem = (from c in Context.Cloth
+        //                          where c._id == cloth_id
+        //                          select c).FirstOrDefault(); 
 
-            if (selectedItem.DiscriminatorValue.Equals("Pants"))
-            {
-                Pants seletedPants = (from p in Context.Pants
-                                     where p._id == cloth_id
-                                     select p).FirstOrDefault();
+        //    if (selectedItem.DiscriminatorValue.Equals("Pants"))
+        //    {
+        //        Pants seletedPants = (from p in Context.Pants
+        //                             where p._id == cloth_id
+        //                             select p).FirstOrDefault();
 
-                cmb.SelectedIndex = 0;
+        //        cmb.SelectedIndex = 0;
 
-                brandsCB.SelectedItem = seletedPants._brand;
+        //        brandsCB.SelectedItem = seletedPants._brand;
 
-                price.Text = seletedPants._price.ToString();
-                waistsizetxt.Text = seletedPants._waistSize.ToString();
-                inventory.Text = seletedPants._inventory.ToString();
-                fabric.Text = seletedPants._fabric;
-                color.Text = seletedPants._color;
-                size.Text = seletedPants._pantsSize;
-            }
-            else if (selectedItem.DiscriminatorValue.Equals("Jacket"))
-            {
-                Jacket selectedJacket = (from j in Context.Jacket
-                                       where j._id == cloth_id
-                                       select j).FirstOrDefault();
+        //        price.Text = seletedPants._price.ToString();
+        //        waistsizetxt.Text = seletedPants._waistSize.ToString();
+        //        inventory.Text = seletedPants._inventory.ToString();
+        //        fabric.Text = seletedPants._fabric;
+        //        color.Text = seletedPants._color;
+        //        size.Text = seletedPants._pantsSize;
+        //    }
+        //    else if (selectedItem.DiscriminatorValue.Equals("Jacket"))
+        //    {
+        //        Jacket selectedJacket = (from j in Context.Jacket
+        //                               where j._id == cloth_id
+        //                               select j).FirstOrDefault();
 
-                cmb.SelectedIndex = 1;
+        //        cmb.SelectedIndex = 1;
 
-                brandsCB.SelectedItem = selectedJacket._brand;
+        //        brandsCB.SelectedItem = selectedJacket._brand;
 
-                price.Text = selectedJacket._price.ToString();
-                inventory.Text = selectedJacket._inventory.ToString();
-                fabric.Text = selectedJacket._fabric;
-                color.Text = selectedJacket._color;
-                size.Text = selectedJacket._jacketSize;
-                if (selectedJacket._hasHood == true)
-                {
-                    hasHoodCheckBox.IsChecked = true;
+        //        price.Text = selectedJacket._price.ToString();
+        //        inventory.Text = selectedJacket._inventory.ToString();
+        //        fabric.Text = selectedJacket._fabric;
+        //        color.Text = selectedJacket._color;
+        //        size.Text = selectedJacket._jacketSize;
+        //        if (selectedJacket._hasHood == true)
+        //        {
+        //            hasHoodCheckBox.IsChecked = true;
 
-                } 
-                else if (selectedJacket._hasHood == true)
-                {
-                    hasHoodCheckBox.IsChecked = false;
-                }
-            }
-            else if (selectedItem.DiscriminatorValue.Equals("Tshirt"))
-            {
-                T_shirt selectedTshirt = (from t in Context.T_Shirt
-                                        where t._id == cloth_id
-                                        select t).FirstOrDefault();
+        //        } 
+        //        else if (selectedJacket._hasHood == true)
+        //        {
+        //            hasHoodCheckBox.IsChecked = false;
+        //        }
+        //    }
+        //    else if (selectedItem.DiscriminatorValue.Equals("Tshirt"))
+        //    {
+        //        T_shirt selectedTshirt = (from t in Context.T_Shirt
+        //                                where t._id == cloth_id
+        //                                select t).FirstOrDefault();
 
-                cmb.SelectedIndex = 3;
+        //        cmb.SelectedIndex = 3;
 
-                brandsCB.SelectedItem = selectedTshirt._brand;
+        //        brandsCB.SelectedItem = selectedTshirt._brand;
 
-                price.Text = selectedTshirt._price.ToString();
-                inventory.Text = selectedTshirt._inventory.ToString(); 
-                fabric.Text = selectedTshirt._fabric;
-                color.Text = selectedTshirt._color;
-                size.Text = selectedTshirt._tshirtSize;
+        //        price.Text = selectedTshirt._price.ToString();
+        //        inventory.Text = selectedTshirt._inventory.ToString(); 
+        //        fabric.Text = selectedTshirt._fabric;
+        //        color.Text = selectedTshirt._color;
+        //        size.Text = selectedTshirt._tshirtSize;
 
-            }
+        //    }
         }
 
         private void CreateObject_Click(object sender, RoutedEventArgs e)
@@ -125,7 +125,7 @@ namespace ClothingApplication.MVVM.View
                     pants._inventory = Convert.ToInt32(inventory.Text);
                     pants._fabric = fabric.Text;
                     pants._color = color.Text;
-                    pants._pantsSize = size.Text;
+                    pants._size = size.Text;
 
                     Brand thisBrand = (from b in Context.brand
                                        where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
@@ -152,7 +152,7 @@ namespace ClothingApplication.MVVM.View
                     jacket._inventory = Convert.ToInt32(inventory.Text);
                     jacket._fabric = fabric.Text;
                     jacket._color = color.Text;
-                    jacket._jacketSize = size.Text;
+                    jacket._size = size.Text;
 
                     if ((bool)hasHoodCheckBox.IsChecked)
                     {
@@ -189,7 +189,7 @@ namespace ClothingApplication.MVVM.View
                     tshirt._inventory = Convert.ToInt32(inventory.Text);
                     tshirt._fabric = fabric.Text;
                     tshirt._color = color.Text;
-                    tshirt._tshirtSize = size.Text;
+                    tshirt._size = size.Text;
 
                     Brand thisBrand = (from b in Context.brand
                                        where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
@@ -319,7 +319,7 @@ namespace ClothingApplication.MVVM.View
                 updatePants._inventory = Convert.ToInt32(inventory.Text);
                 updatePants._fabric = fabric.Text;
                 updatePants._color = color.Text;
-                updatePants._pantsSize = size.Text;
+                updatePants._size = size.Text;
 
                 Brand thisBrand = (from b in Context.brand
                                    where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())
@@ -346,7 +346,7 @@ namespace ClothingApplication.MVVM.View
                 updateJacket._inventory = Convert.ToInt32(inventory.Text);
                 updateJacket._fabric = fabric.Text;
                 updateJacket._color = color.Text;
-                updateJacket._jacketSize = size.Text;
+                updateJacket._size = size.Text;
 
                 if (hasHoodCheckBox.IsChecked == false)
                 {
@@ -381,7 +381,7 @@ namespace ClothingApplication.MVVM.View
                 updateTshirt._inventory = Convert.ToInt32(inventory.Text);
                 updateTshirt._fabric = fabric.Text;
                 updateTshirt._color = color.Text;
-                updateTshirt._tshirtSize = size.Text;
+                updateTshirt._size = size.Text;
 
                 Brand thisBrand = (from b in Context.brand
                                    where b._brandName.Equals(ComboboxBrandValue._brandName.ToString())

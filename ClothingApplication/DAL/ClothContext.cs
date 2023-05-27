@@ -10,7 +10,7 @@ namespace ClothingApplication.DAL
 
         public ClothContext() : base("Cloth")
         {
-
+            Database.SetInitializer(new ClothContextInitializer());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

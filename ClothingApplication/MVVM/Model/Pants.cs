@@ -4,14 +4,12 @@ namespace ClothingApplication.MVVM.Model
 {
     internal class Pants : Cloth
     {
-        public string _pantsSize { get; set; }
         public int _waistSize { get; set; }
 
         public Pants() { }
 
-        public Pants(Brand brand, string color, string fabric, double price, int inventory, string size, int waistSize) : base(brand, color, fabric, price, inventory)
+        public Pants(Brand brand, string color, string fabric, double price, int inventory, string size, int waistSize) : base(brand, color, fabric, price, inventory, size)
         {
-            _pantsSize = size;
             _waistSize = waistSize;
         }
 
@@ -25,7 +23,7 @@ namespace ClothingApplication.MVVM.Model
                 " Fabric: " + _fabric + 
                 " Price: " + _price + 
                 " Inventory: " + _inventory + 
-                " Size: " + _pantsSize +
+                " Size: " + _size +
                 " Waist Size: " + _waistSize;
         }
 

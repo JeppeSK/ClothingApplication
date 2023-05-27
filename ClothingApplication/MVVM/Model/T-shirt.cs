@@ -4,13 +4,10 @@ namespace ClothingApplication.MVVM.Model
 {
     internal class T_shirt : Cloth
     {
-        public string _tshirtSize { get; set; }
-
         public T_shirt() { }
 
-        public T_shirt(Brand brand, string color, string fabric, double price, int inventory, string size) : base(brand, color, fabric, price, inventory)
+        public T_shirt(Brand brand, string color, string fabric, double price, int inventory, string size) : base(brand, color, fabric, price, inventory, size)
         {
-            _tshirtSize = size;
         }
         public override string ToString()
         {
@@ -22,7 +19,7 @@ namespace ClothingApplication.MVVM.Model
                 " Fabric: " + _fabric + 
                 " Price: " + _price + 
                 " Inventory: " + _inventory + 
-                " Size: " + _tshirtSize;
+                " Size: " + _size;
         }
 
     }

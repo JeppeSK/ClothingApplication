@@ -16,6 +16,7 @@ namespace ClothingApplication.MVVM.Model
         public double _price { get; set; }
         public int _inventory { get; set; }
         public string _image { get; set; }
+        public string _size { get; set; }
         public string DiscriminatorValue
         {
             get { return this.GetType().Name; }
@@ -23,13 +24,14 @@ namespace ClothingApplication.MVVM.Model
 
         public Cloth() { }  
 
-        public Cloth(Brand brand, string color, string fabric, double price, int inventory)
+        public Cloth(Brand brand, string color, string fabric, double price, int inventory, string size)
         {
             _brand = brand;
             _color = color;
             _fabric = fabric;
             _price = price;
             _inventory = inventory;
+            _size = size;
         }
     }
 }
