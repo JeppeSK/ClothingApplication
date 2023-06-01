@@ -4,7 +4,7 @@ namespace ClothingApplication.MVVM.Model
 {
     internal class Jacket : Cloth
     {
-        public bool _hasHood { get; set; }
+        public bool? _hasHood { get; set; }
         public Jacket() { }
         public Jacket(Brand brand, string color, string fabric, double price, int inventory, string size, bool hasHood) : base(brand, color, fabric, price, inventory, size)
         {

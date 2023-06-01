@@ -26,6 +26,5 @@ namespace ClothingApplication.MVVM.Model
                 " Size: " + _size +
                 " Waist Size: " + _waistSize;
         }
-
     }
 }

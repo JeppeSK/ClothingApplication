@@ -18,7 +18,6 @@ namespace ClothingApplication.MVVM.ViewModel
         {
             AvailableTypes.Add("Pants");
             AvailableTypes.Add("Jacket");
-            AvailableTypes.Add("Shoes");
             AvailableTypes.Add("Tshirt");
         }
 

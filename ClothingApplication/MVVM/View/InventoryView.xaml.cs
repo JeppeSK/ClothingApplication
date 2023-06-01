@@ -1,4 +1,5 @@
 ﻿using ClothingApplication.DAL;
+using ClothingApplication.MVVM.Model;
 // using ClothingApplication.Migrations;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -29,8 +31,8 @@ namespace ClothingApplication.MVVM.View
         {
             InitializeComponent();
 
-//            var initializer = new MigrateDatabaseToLatestVersion<ClothContext, Configuration>();
-//            Database.SetInitializer(initializer);
+            //            var initializer = new MigrateDatabaseToLatestVersion<ClothContext, Configuration>();
+            //            Database.SetInitializer(initializer);
 
             Datagrid.ItemsSource = Context.Cloth.Local;
 
