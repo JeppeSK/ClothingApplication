@@ -94,7 +94,7 @@ namespace ClothingApplication.MVVM.View
                     hasHoodCheckBox.IsChecked = false;
                 }
             }
-            else if (selectedItem.DiscriminatorValue.Equals("Tshirt"))
+            else if (selectedItem.DiscriminatorValue.Equals("T_shirt"))
             {
                 T_shirt selectedTshirt = (from t in Context.T_Shirt
                                           where t._id == cloth_id
