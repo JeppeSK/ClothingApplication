@@ -3,14 +3,9 @@ using ClothingApplication.MVVM.Model;
 using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
-// using ClothingApplication.Migrations;
 using System.Linq;
-using System.Collections.Generic;
 using System;
-using System.Windows.Interop;
-using System.Windows.Media.Animation;
-using System.Windows.Media;
-using System.Diagnostics;
+
 
 namespace ClothingApplication.MVVM.View
 {
@@ -24,15 +19,9 @@ namespace ClothingApplication.MVVM.View
         public CRUDView()
         {
             InitializeComponent();
-
-//            var initializer = new MigrateDatabaseToLatestVersion<ClothContext, Configuration>();
-//            Database.SetInitializer(initializer);
                 
             brandsCB.ItemsSource = Context.brand.Local;
             brandsCB.DisplayMemberPath = "_brandName";
-
-            // cmb.ItemsSource = Context.Cloth.Local;
-            // cmb.DisplayMemberPath = "DiscriminatorValue";
         
             Datagrid.ItemsSource = Context.Cloth.Local;
 
